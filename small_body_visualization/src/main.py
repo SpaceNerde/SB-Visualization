@@ -4,9 +4,7 @@ import json
 import csv
 import re
 
-import sys
-from PyQt5.QtWidgets import QApplication, QTableView, QHeaderView
-from PyQt5.QtCore import QAbstractTableModel, Qt
+import tkinter as tk
 # uncomment to get Data
 
 '''
@@ -32,34 +30,15 @@ df.to_csv('data.csv', index=False)
 '''
 
 df = pd.read_csv('data.csv')
-class App(QAbstractTableModel):
-    def __init__(self, data):
-        QAbstractTableModel.__init__(self)
-        self._data = data
 
-    def rowCount(self, parent=None):
-        return self._data.shape[0]
-
-    def columnCount(self, parnet=None):
-        return self._data.shape[1]
-
-    def data(self, index, role=Qt.DisplayRole):
-        if index.isValid():
-            if role == Qt.DisplayRole:
-                return str(self._data.iloc[index.row(), index.column()])
-        return None
-
-    def headerData(self, col, orientation, role):
-        if orientation == Qt.Horizontal and role == Qt.DisplayRole:
-            return self._data.columns[col]
-        return None
+class App():
+    def __init__(self):
+        self.root = tk.Tk()
+        self.root.geometry('1600x800')
+    
+    def run(self):
+        self.root.mainloop()
 
 if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    model = App(df)
-    view = QTableView()
-    view.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
-    view.setModel(model)
-    view.resize(1400, 600)
-    view.show()
-    sys.exit(app.exec_())
+    app = App()
+    app.run()
