@@ -7,8 +7,6 @@ import re
 import sys
 from PyQt5.QtWidgets import QApplication, QTableView, QHeaderView
 from PyQt5.QtCore import QAbstractTableModel, Qt
-
-
 # uncomment to get Data
 
 '''
@@ -34,7 +32,6 @@ df.to_csv('data.csv', index=False)
 '''
 
 df = pd.read_csv('data.csv')
-
 class App(QAbstractTableModel):
     def __init__(self, data):
         QAbstractTableModel.__init__(self)
