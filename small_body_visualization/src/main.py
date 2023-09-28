@@ -4,26 +4,24 @@ import json
 import csv
 import re
 
-req = requests.get("https://ssd-api.jpl.nasa.gov/sb_sat.api", params={
-    'orb': 1,
-    'sigma': 1,
-    'phys-par': 1,
-    'fullname': 1,
-    'class': 1
+req = requests.get("https://ssd-api.jpl.nasa.gov/cad.api", params={
+    'diameter': False,
+    'fullname': True,
+    'nea-comet': False,
+    'comet': False,
+    'nea': False,
+    'pha': False,
+    'neo': False,
     }
 )
 
+fields = req.json()['fields']
 data = req.json()['data']
 
-df = pd.DataFrame([item["sat"] for item in data])
+print(json.dumps(data, indent=4))
+print(json.dumps(fields, indent=4))
 
-df['prov_num'] = pd.to_numeric(df['prov_num'], errors='coerce')
-
-df.sort_values(by='prov_num', inplace=True)
-
-df[['number', 'name']] = df['sat_fullname'].str.extract(r'\((\d+)\) (.*)')
-
-df.drop(columns='sat_fullname', inplace=True)
+df = pd.DataFrame(columns=fields[::-1], data=[d[::-1] for d in data])
 
 df.to_csv('data.csv', index=False)
 
