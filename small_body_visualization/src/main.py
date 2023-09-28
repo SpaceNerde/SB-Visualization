@@ -37,6 +37,9 @@ class App():
     def __init__(self):
         self.root = tk.Tk()
         self.root.geometry('1600x800')
+        self.root.rowconfigure(0, weight = 1)
+        self.root.columnconfigure(0, weight = 1)
+
     
     def load_widgets(self):
         SSD_CNEOS(self.root, df)
