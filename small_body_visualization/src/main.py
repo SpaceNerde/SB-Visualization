@@ -5,7 +5,7 @@ import csv
 import re
 
 import sys
-from PyQt5.QtWidgets import QApplication, QTableView
+from PyQt5.QtWidgets import QApplication, QTableView, QHeaderView
 from PyQt5.QtCore import QAbstractTableModel, Qt
 
 
@@ -61,7 +61,8 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     model = App(df)
     view = QTableView()
+    view.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
     view.setModel(model)
-    view.resize(800, 600)
+    view.resize(1400, 600)
     view.show()
     sys.exit(app.exec_())
