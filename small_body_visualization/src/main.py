@@ -35,7 +35,7 @@ class App():
         self.root.title("Space's Small Body Visualization")
     
     def load_widgets(self):
-        SSD_CNEOS(self.root, df).pack()
+        SSD_CNEOS(self.root, df).pack(padx=10, pady=10)
 
     def run(self):
         self.root.mainloop()
