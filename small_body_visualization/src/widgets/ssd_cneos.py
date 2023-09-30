@@ -51,6 +51,5 @@ class SSD_CNEOS(tk.Frame):
                 
     def update_canvas_width(self):
         total_width = sum(entry.winfo_width()*124 for entry in self.entries)
-        print(total_width)
         self.canvas.config(scrollregion=(0, 0, total_width, self.canvas.winfo_height()))
         self.canvas.config(width=total_width)
