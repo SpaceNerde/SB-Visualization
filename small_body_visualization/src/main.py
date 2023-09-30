@@ -32,10 +32,9 @@ class App():
         self.root.geometry('1600x800')
         self.root.rowconfigure(0, weight = 1)
         self.root.columnconfigure(0, weight = 1)
-
+        self.root.title("Space's Small Body Visualization")
     
     def load_widgets(self):
-        tk.Label(self.root, text='Data').pack()
         SSD_CNEOS(self.root, df).pack()
 
     def run(self):
