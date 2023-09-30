@@ -19,10 +19,10 @@ class SSD_CNEOS(tk.Frame):
         rows, cols = self.df.shape
         i = 0
         for col in self.df.columns:
-            i += 1
             e = tk.Entry(self)
             e.insert(0, col)
             e.grid(row=0, column=i)
+            i += 1
 
         for r in range(rows):
             for c in range(cols):
