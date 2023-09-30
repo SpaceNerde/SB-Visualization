@@ -42,7 +42,8 @@ class App():
 
     
     def load_widgets(self):
-        SSD_CNEOS(self.root, df)
+        tk.Label(self.root, text='Data').pack()
+        SSD_CNEOS(self.root, df).pack()
 
     def run(self):
         self.root.mainloop()
