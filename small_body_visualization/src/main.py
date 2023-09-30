@@ -5,6 +5,8 @@ import csv
 import re
 
 import tkinter as tk
+
+from widgets.ssd_cneos import SSD_CNEOS
 # uncomment to get Data
 
 '''
@@ -35,10 +37,18 @@ class App():
     def __init__(self):
         self.root = tk.Tk()
         self.root.geometry('1600x800')
+        self.root.rowconfigure(0, weight = 1)
+        self.root.columnconfigure(0, weight = 1)
+
     
+    def load_widgets(self):
+        tk.Label(self.root, text='Data').pack()
+        SSD_CNEOS(self.root, df).pack()
+
     def run(self):
         self.root.mainloop()
 
 if __name__ == '__main__':
     app = App()
+    app.load_widgets()
     app.run()
