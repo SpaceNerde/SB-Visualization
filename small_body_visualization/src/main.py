@@ -1,8 +1,5 @@
 import pandas as pd
 import requests
-import json
-import csv
-import re
 from os.path import exists
 
 import tkinter as tk
@@ -22,9 +19,6 @@ if not exists('data.csv'):
     )
     fields = req.json()['fields']
     data = req.json()['data']
-
-    print(json.dumps(data, indent=4))
-    print(json.dumps(fields, indent=4))
 
     df = pd.DataFrame(columns=fields[::-1], data=[d[::-1] for d in data])
 
