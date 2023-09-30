@@ -29,7 +29,7 @@ else:
 class App():
     def __init__(self):
         self.root = tk.Tk()
-        self.root.geometry('1600x800')
+        self.root.geometry('1600x300')
         self.root.rowconfigure(0, weight = 1)
         self.root.columnconfigure(0, weight = 1)
         self.root.title("Space's Small Body Visualization")
