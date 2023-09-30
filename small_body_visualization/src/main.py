@@ -3,35 +3,34 @@ import requests
 import json
 import csv
 import re
+from os.path import exists
 
 import tkinter as tk
 
 from widgets.ssd_cneos import SSD_CNEOS
-# uncomment to get Data
 
-'''
-req = requests.get("https://ssd-api.jpl.nasa.gov/cad.api", params={
-    'diameter': False,
-    'fullname': True,
-    'nea-comet': False,
-    'comet': False,
-    'nea': False,
-    'pha': False,
-    'neo': False,
-    }
-)
-fields = req.json()['fields']
-data = req.json()['data']
+if not exists('data.csv'):
+    req = requests.get("https://ssd-api.jpl.nasa.gov/cad.api", params={
+        'diameter': False,
+        'fullname': True,
+        'nea-comet': False,
+        'comet': False,
+        'nea': False,
+        'pha': False,
+        'neo': False,
+        }
+    )
+    fields = req.json()['fields']
+    data = req.json()['data']
 
-print(json.dumps(data, indent=4))
-print(json.dumps(fields, indent=4))
+    print(json.dumps(data, indent=4))
+    print(json.dumps(fields, indent=4))
 
-df = pd.DataFrame(columns=fields[::-1], data=[d[::-1] for d in data])
+    df = pd.DataFrame(columns=fields[::-1], data=[d[::-1] for d in data])
 
-df.to_csv('data.csv', index=False)
-'''
-
-df = pd.read_csv('data.csv')
+    df.to_csv('data.csv', index=False)
+else:
+    df = pd.read_csv('data.csv')
 
 class App():
     def __init__(self):
