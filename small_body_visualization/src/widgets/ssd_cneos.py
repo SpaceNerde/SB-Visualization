@@ -17,11 +17,18 @@ class SSD_CNEOS(tk.Frame):
 
     def create_table(self):
         rows, cols = self.df.shape
+        i = 0
+        for col in self.df.columns:
+            i += 1
+            e = tk.Entry(self)
+            e.insert(0, col)
+            e.grid(row=0, column=i)
+
         for r in range(rows):
             for c in range(cols):
                 e = tk.Entry(self)
                 e.insert(0, self.df.iloc[r, c])
-                e.grid(row=r, column=c)
+                e.grid(row=r+1, column=c)
                 e.bind('<Return>', lambda event, y=r, x=c: self.data_processing(event,y,x))
                 e.bind('<KP_Enter>', lambda event, y=r, x=c: self.data_processing(event,y,x))
                 e.bind('<KeyRelease>', lambda event, y=r, x=c: self.data_processing(event, y,x))
