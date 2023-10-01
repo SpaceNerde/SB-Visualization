@@ -25,7 +25,7 @@ class SSD_CNEOS(tk.Frame):
 
         for entry in self.entries:
             entry.bind("<Configure>", self.update_canvas_width())
-        
+
     def data_processing(self, e, r, c):
         value = e.widget.get()
         self.df.iloc[r,c] = value
@@ -47,7 +47,6 @@ class SSD_CNEOS(tk.Frame):
                 e.insert(0, self.df.iloc[r, c])
                 e.grid(row=r+1, column=c)
                 e.bind('<KeyRelease>', lambda event, y=r, x=c: self.data_processing(event, y,x))
-                
                 
     def update_canvas_width(self):
         total_width = sum(entry.winfo_width()*124 for entry in self.entries)
